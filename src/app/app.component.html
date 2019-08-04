@@ -1,0 +1,37 @@
+<div id="ffmpegSplit">
+  <div>
+    <h2>Input:</h2>
+    <div id="inputDiv">
+      <input type="text" placeholder="Input File" (keyup)=onInputFileKey($event) />
+    </div>
+    <div>
+      <input #startTimeTextBox type="text" placeholder="Start Time" (keyup)=onStartTimeKey($event)
+        [(ngModel)]="startTime" appTimeMask />
+      <input #endTimeTextBox type="text" placeholder="End Time" (keyup)=onEndTimeKey($event) [(ngModel)]="endTime"
+        appTimeMask />
+      <input #fileNameTextBox type="text" placeholder="Name" (keyup)=onFileNameKey($event) [(ngModel)]="fileName" />
+      <button class="addButton" (click)="addSplit()">Add Split</button>
+
+      <p *ngIf="splits.length != 0">Splits:</p>
+      <ul>
+        <li *ngFor="let split of splits; let first=first; let last=last; let i=index;">
+          <span *ngIf="first">ffmpeg -i '{{inputFile}}' -vcodec copy -acodec copy -ss {{split.startTime}} -t
+            {{split.endTime}} {{split.fileName}}</span>
+          <span *ngIf="!first">-vcodec copy -acodec copy -ss {{split.startTime}} -to
+            {{split.endTime}} {{split.fileName}}</span>
+          <button class="deleteButton" (click)="deleteSplit(split)">Delete</button>
+          <div class="directionalButtons" *ngIf="splits.length > 1">
+            <button *ngIf="i===0" (click)="down(split)">Down</button>
+            <button *ngIf="i!==0 && i!==(splits.length-1)" (click)="up(split)">Up</button>
+            <button *ngIf="i!==0 && i!==(splits.length-1)" (click)="down(split)">Down</button>
+            <button *ngIf="i===(splits.length-1)" (click)="up(split)">Up</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <h2>Output:</h2>
+    <textarea id="output">{{command}}</textarea><br /><br />
+  </div>
+</div>

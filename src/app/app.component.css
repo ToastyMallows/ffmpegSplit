@@ -1,0 +1,22 @@
+#output {
+  width: 800px;
+  height: 200px;
+}
+
+#inputDiv
+{
+  padding-bottom: 25px;
+}
+
+#ffmpegSplit {
+  margin-left: 75px;
+}
+
+.deleteButton {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.directionalButtons {
+  display: inline-block;
+}
