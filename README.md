@@ -12,14 +12,28 @@ ffmpeg -i 'test.avi' -vcodec copy -acodec copy -ss 00:00:01.123 -t 00:00:02.567 
 
 `ffmpeg` installed and on your `PATH`.
 
-## Building
+## Building Locally
 
-1. Clone repo
+### Local Build Requirements
+
+* Node.js and NPM
+* Angular CLI v8.1.x or higher
+
+### Steps
+
+1. Clone Git repository
 1. `npm install`
 1. Two options for building and running
    1. `npm run build:{OS TYPE}` or `npm run build:all` (Note this command will take a long time).
       * `OS TYPE` values:  `win64`, `win86`, `linux64`, `linux86`, `mac64`
    1. `npm run start` to quickly run the program in a browser tab at <http://localhost:4200>
+
+## Releases
+
+* 1.0.0
+  * Initial major release
+  * Supports generating `ffmpeg` video file splitting commands for use in a terminal of your choice.
+  * Binaries and installers have been prebuilt for v1.0.0, and are listed up in the Releases tab.
 
 ## Quesitons?
 
